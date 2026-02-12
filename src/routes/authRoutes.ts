@@ -343,4 +343,22 @@ router.post('/login', loginUser);
  */
 router.get('/me', protect, getMe);
 
+/**
+ * @swagger
+ * /api/auth/logout:
+ *   post:
+ *     summary: Logout user
+ *     tags: [Auth]
+ *     security:
+ *       - bearerAuth: []
+ *       - cookieAuth: []
+ *     responses:
+ *       200:
+ *         description: Logout successful
+ */
+router.post('/logout', (req: any, res: any) => {
+  res.clearCookie('token');
+  res.json({ message: 'Logged out successfully' });
+});
+
 export default router;
